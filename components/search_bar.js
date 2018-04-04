@@ -13,7 +13,8 @@ import type { SearchTerm } from '../types';
 type SearchBarState = {
     +searchTerm: SearchTerm,
     +searchTermChange: string => void,
-    +getTweets: string => void
+    +getTweets: string => void,
+    +classes: Object
 }
 
 const styles = theme => ({
@@ -57,10 +58,10 @@ class SearchBar extends React.Component<SearchBarState> {
         const { classes } = this.props;
 
         return(
-            <form onSubmit={this.onFormSubmit.bind(this)}>
+            <form id='searchForm' onSubmit={this.onFormSubmit.bind(this)}>
                 <Input
-                    label="Bootstrap"
-                    id="bootstrap-input"
+                    id='searchTerm'
+                    label='Input'
                     disableUnderline={true}
                     className={classes.textFieldStyle}
                     value={this.props.searchTerm}
@@ -70,7 +71,7 @@ class SearchBar extends React.Component<SearchBarState> {
                         input: classes.textFieldInput,
                     }}
                 />
-                <Button type='submit' variant="raised" color="primary" className={classes.button}>
+                <Button type='submit' variant='raised' color='primary' className={classes.button}>
                     Primary
                 </Button>
             </form>

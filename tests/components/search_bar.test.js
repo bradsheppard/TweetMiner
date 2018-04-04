@@ -22,7 +22,7 @@ describe('Search bar', () => {
         const store = mockStore({});
         const enzymeWrapper = mount(<SearchBar store={store}/>);
 
-        expect(enzymeWrapper.find('.row')).toHaveLength(1);
+        expect(enzymeWrapper.find('#searchForm')).toHaveLength(1);
     });
 
     it('Search term changed', () => {

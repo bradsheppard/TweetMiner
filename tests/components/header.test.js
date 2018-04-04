@@ -11,7 +11,6 @@ describe('Header', () => {
     it('It should render', () => {
         const enzymeWrapper = mount(<Header />);
 
-        expect(enzymeWrapper.find('nav')).toHaveLength(1);
-        expect(enzymeWrapper.find('a')).toHaveLength(1);
+        expect(enzymeWrapper.find('AppBar')).toHaveLength(1);
     });
 });
