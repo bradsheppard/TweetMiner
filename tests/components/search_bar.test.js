@@ -29,7 +29,7 @@ describe('Search bar', () => {
         const store = mockStore({});
         const enzymeWrapper = mount(<SearchBar store={store}/>);
 
-        const input = enzymeWrapper.find('#searchTerm');
+        const input = enzymeWrapper.find('input');
         input.simulate('change');
 
         const actions = store.getActions();
