@@ -5,6 +5,7 @@ import Results from '../components/results';
 import HtmlHead from '../components/html_head';
 import withRedux from 'next-redux-wrapper';
 import { initStore } from '../store';
+import withRoot from './withRoot';
 
 const searchAreaStyle = {
     backgroundColor: '#4DB7FE'
@@ -31,4 +32,4 @@ class Index extends React.Component {
     }
 }
 
-export default withRedux(initStore)(Index)
+export default withRedux(initStore)(withRoot(Index))
