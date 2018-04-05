@@ -13,6 +13,6 @@ describe('Results list item', () => {
     it('It should render', () => {
         const enzymeWrapper = mount(<ResultsListItem tweet={tweet}/>);
 
-        expect(enzymeWrapper.find('.list-group-item')).toHaveLength(1);
+        expect(enzymeWrapper.find('ListItem')).toHaveLength(1);
     });
 });

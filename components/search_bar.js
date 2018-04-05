@@ -7,6 +7,7 @@ import { getTweets, searchTermChange } from '../actions';
 import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
 
 import type { SearchTerm } from '../types';
 
@@ -18,15 +19,16 @@ type SearchBarState = {
 }
 
 const styles = theme => ({
-    textFieldStyle: {
-        width: '100%'
-    },
     container: {
         display: 'flex',
         flexWrap: 'wrap',
     },
-    formControl: {
-        margin: theme.spacing.unit,
+    input: {
+        width: '100%'
+    },
+    button: {
+        width: '100%',
+        height: '100%'
     },
     textFieldRoot: {
         padding: 0,
@@ -46,10 +48,7 @@ const styles = theme => ({
             borderColor: '#80bdff',
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
         },
-    },
-    textFieldFormLabel: {
-        fontSize: 18,
-    },
+    }
 });
 
 class SearchBar extends React.Component<SearchBarState> {
@@ -58,40 +57,31 @@ class SearchBar extends React.Component<SearchBarState> {
         const { classes } = this.props;
 
         return(
-            <form id='searchForm' onSubmit={this.onFormSubmit.bind(this)}>
-                <Input
-                    id='searchTerm'
-                    label='Input'
-                    disableUnderline={true}
-                    className={classes.textFieldStyle}
-                    value={this.props.searchTerm}
-                    onChange={this.onInputChange.bind(this)}
-                    classes={{
-                        root: classes.textFieldRoot,
-                        input: classes.textFieldInput,
-                    }}
-                />
-                <Button type='submit' variant='raised' color='primary' className={classes.button}>
-                    Primary
-                </Button>
+            <form id='searchForm' className={classes.container} onSubmit={this.onFormSubmit.bind(this)}>
+                <Grid container>
+                    <Grid item xs={12} sm={10}>
+                        <Input
+                            id='searchTerm'
+                            label='Input'
+                            disableUnderline={true}
+                            value={this.props.searchTerm}
+                            className={classes.input}
+                            onChange={this.onInputChange.bind(this)}
+                            classes={{
+                                root: classes.textFieldRoot,
+                                input: classes.textFieldInput,
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                        <Button type='submit' variant='raised' color='primary' className={classes.button}>
+                            Search
+                        </Button>
+                    </Grid>
+                </Grid>
             </form>
         );
     }
-
-    /*render() {
-        return (
-            <form onSubmit={this.onFormSubmit.bind(this)}>
-                <div className='row no-gutters'>
-                    <div className='col'>
-                        <input type='text' value={this.props.searchTerm} onChange={this.onInputChange.bind(this)} className='form-control form-control-lg' id='searchTerm' />
-                    </div>
-                    <div className='col-auto'>
-                        <input type="submit" value="Submit" id='form-submit' className='form-control form-control-lg' />
-                    </div>
-                </div>
-            </form>
-        );
-    }*/
 
     onInputChange(event: any) {
         this.props.searchTermChange(event.target.value);

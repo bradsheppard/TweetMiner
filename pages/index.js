@@ -6,30 +6,48 @@ import HtmlHead from '../components/html_head';
 import withRedux from 'next-redux-wrapper';
 import { initStore } from '../store';
 import withRoot from './withRoot';
+import Grid from 'material-ui/Grid';
+import { withStyles } from 'material-ui/styles';
 
-const searchAreaStyle = {
-    backgroundColor: '#4DB7FE'
-};
+const styles = theme => ({
+    searchArea: {
+        backgroundColor: theme.palette.secondary.main,
+        paddingBottom: '6em',
+        paddingTop: '9em'
+    },
+    root: {
+        flexGrow: 1
+    },
+    paper: {
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+});
 
 class Index extends React.Component {
     render() {
+
+        const { classes } = this.props;
+
         return (
-            <div className="App">
+            <div id='mainContainer' className={classes.root}>
                 <HtmlHead/>
-                <div className='p-0 container-fluid'>
-                    <Header/>
-                    <div className='jumbotron jumbotron-fluid' style={searchAreaStyle}>
-                        <div className='container'>
+                <Header/>
+                <div className={classes.searchArea}>
+                    <Grid container
+                          alignItems='center'
+                          direction='row'
+                          justify='center'>
+                        <Grid item xs={12} sm={6}>
                             <SearchBar/>
-                        </div>
-                    </div>
+                        </Grid>
+                    </Grid>
                 </div>
-                <div className='container'>
-                    <Results/>
-                </div>
+                <Results/>
             </div>
         );
     }
 }
 
-export default withRedux(initStore)(withRoot(Index))
+export default withRoot(withStyles(styles)(withRedux(initStore)(Index)));

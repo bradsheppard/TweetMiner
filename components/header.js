@@ -10,8 +10,7 @@ const styles = {
         flexGrow: 1,
     },
     appBarStyle: {
-        position: 'fixed',
-        backgroundColor: '#282828'
+        position: 'fixed'
     }
 };
 

@@ -19,7 +19,19 @@ import green from 'material-ui/colors/green';
         },
     },
 });*/
-const theme = createMuiTheme({});
+const theme = createMuiTheme({
+    typography: {
+        fontSize: 16
+    },
+    palette: {
+        primary: {
+            main: '#212121'
+        },
+        secondary: {
+            main: '#4DB7FE'
+        }
+    }
+});
 
 function createPageContext() {
     return {

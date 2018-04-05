@@ -12,6 +12,6 @@ describe('Index page', () => {
     it('It should render', () => {
         const enzymeWrapper = mount(<Index/>);
 
-        expect(enzymeWrapper.find('.App')).toHaveLength(1);
+        expect(enzymeWrapper.find('#mainContainer')).toHaveLength(1);
     });
 });
