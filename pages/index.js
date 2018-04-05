@@ -2,7 +2,6 @@ import React from 'react';
 import Header from '../components/header';
 import SearchBar from '../components/search_bar';
 import Results from '../components/results';
-import HtmlHead from '../components/html_head';
 import withRedux from 'next-redux-wrapper';
 import { initStore } from '../store';
 import withRoot from './withRoot';
@@ -32,7 +31,6 @@ class Index extends React.Component {
 
         return (
             <div id='mainContainer' className={classes.root}>
-                <HtmlHead/>
                 <Header/>
                 <div className={classes.searchArea}>
                     <Grid container
