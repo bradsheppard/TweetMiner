@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/header';
+import Top from '../components/top';
 import SearchBar from '../components/search_bar';
 import Results from '../components/results';
 import withRedux from 'next-redux-wrapper';
@@ -11,17 +12,12 @@ import { withStyles } from 'material-ui/styles';
 const styles = theme => ({
     searchArea: {
         backgroundColor: theme.palette.secondary.main,
-        paddingBottom: '6em',
-        paddingTop: '9em'
+        paddingBottom: '8em',
+        paddingTop: '8em'
     },
     root: {
         flexGrow: 1
-    },
-    paper: {
-        padding: theme.spacing.unit * 2,
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
+    }
 });
 
 class Index extends React.Component {
@@ -31,7 +27,8 @@ class Index extends React.Component {
 
         return (
             <div id='mainContainer' className={classes.root}>
-                <Header/>
+                {/*<Header/>*/}
+                <Top/>
                 <div className={classes.searchArea}>
                     <Grid container
                           alignItems='center'
@@ -43,6 +40,7 @@ class Index extends React.Component {
                     </Grid>
                 </div>
                 <Results/>
+
             </div>
         );
     }

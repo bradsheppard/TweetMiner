@@ -27,8 +27,9 @@ class MyDocument extends Document {
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
                 />
+
             </Head>
-            <body>
+            <body style={{backgroundColor: pageContext.theme.palette.canvasColor}}>
             <Main />
             <NextScript />
             </body>

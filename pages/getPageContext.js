@@ -25,11 +25,12 @@ const theme = createMuiTheme({
     },
     palette: {
         primary: {
-            main: '#212121'
+            main: '#ffffff'
         },
         secondary: {
-            main: '#4DB7FE'
-        }
+            main: '#0094d4'
+        },
+        canvasColor: '#ebebeb',
     }
 });
 

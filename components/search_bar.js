@@ -23,9 +23,6 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
     },
-    input: {
-        width: '100%'
-    },
     button: {
         width: '100%',
         height: '100%'
@@ -41,7 +38,7 @@ const styles = theme => ({
         backgroundColor: theme.palette.common.white,
         border: '1px solid #ced4da',
         fontSize: 16,
-        padding: '10px 12px',
+        padding: '1em 1em',
         width: 'calc(100% - 24px)',
         transition: theme.transitions.create(['border-color', 'box-shadow']),
         '&:focus': {
@@ -65,7 +62,8 @@ class SearchBar extends React.Component<SearchBarState> {
                             label='Input'
                             disableUnderline={true}
                             value={this.props.searchTerm}
-                            className={classes.input}
+                            fullWidth={true}
+                            /*className={classes.input}*/
                             onChange={this.onInputChange.bind(this)}
                             classes={{
                                 root: classes.textFieldRoot,
