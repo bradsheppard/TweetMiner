@@ -23,6 +23,11 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
     },
+    searchArea: {
+        backgroundColor: theme.palette.secondary.main,
+        paddingBottom: '8em',
+        paddingTop: '8em'
+    },
     button: {
         width: '100%',
         height: '100%'
@@ -54,30 +59,38 @@ class SearchBar extends React.Component<SearchBarState> {
         const { classes } = this.props;
 
         return(
-            <form id='searchForm' className={classes.container} onSubmit={this.onFormSubmit.bind(this)}>
-                <Grid container>
-                    <Grid item xs={12} sm={10}>
-                        <Input
-                            id='searchTerm'
-                            label='Input'
-                            disableUnderline={true}
-                            value={this.props.searchTerm}
-                            fullWidth={true}
-                            /*className={classes.input}*/
-                            onChange={this.onInputChange.bind(this)}
-                            classes={{
-                                root: classes.textFieldRoot,
-                                input: classes.textFieldInput,
-                            }}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                        <Button type='submit' variant='raised' color='primary' className={classes.button}>
-                            Search
-                        </Button>
-                    </Grid>
+            <Grid container
+                  className={classes.searchArea}
+                  alignItems='center'
+                  direction='row'
+                  justify='center'>
+                <Grid item xs={12} sm={6}>
+                    <form id='searchForm' className={classes.container} onSubmit={this.onFormSubmit.bind(this)}>
+                        <Grid container>
+                            <Grid item xs={12} sm={10}>
+                                <Input
+                                    id='searchTerm'
+                                    label='Input'
+                                    disableUnderline={true}
+                                    value={this.props.searchTerm}
+                                    fullWidth={true}
+                                    /*className={classes.input}*/
+                                    onChange={this.onInputChange.bind(this)}
+                                    classes={{
+                                        root: classes.textFieldRoot,
+                                        input: classes.textFieldInput,
+                                    }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={2}>
+                                <Button type='submit' variant='raised' color='primary' className={classes.button}>
+                                    Search
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </form>
                 </Grid>
-            </form>
+            </Grid>
         );
     }
 
