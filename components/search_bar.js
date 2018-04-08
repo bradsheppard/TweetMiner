@@ -8,8 +8,14 @@ import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
+import { Sticky } from 'react-sticky';
 
 import type { SearchTerm } from '../types';
+
+type StickyProps = {
+    style: Object,
+    isSticky: boolean
+};
 
 type SearchBarState = {
     +searchTerm: SearchTerm,
@@ -26,7 +32,8 @@ const styles = theme => ({
     searchArea: {
         backgroundColor: theme.palette.secondary.main,
         paddingBottom: '8em',
-        paddingTop: '8em'
+        paddingTop: '8em',
+        zIndex: 1
     },
     button: {
         width: '100%',
@@ -47,7 +54,6 @@ const styles = theme => ({
         width: 'calc(100% - 24px)',
         transition: theme.transitions.create(['border-color', 'box-shadow']),
         '&:focus': {
-            borderColor: '#80bdff',
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
         },
     }
@@ -56,16 +62,30 @@ const styles = theme => ({
 class SearchBar extends React.Component<SearchBarState> {
 
     render() {
-        const { classes } = this.props;
+        const { classes, renderSticky } = this.props;
 
         return(
+            <Sticky>
+                {
+                    ({style, isSticky}: StickyProps) => {
+                        return this.getSearchBar(classes, style);
+                    }
+                }
+            </Sticky>
+        );
+    }
+
+    getSearchBar(classes: Object, style: Object) {
+        return (
             <Grid container
+                  style={style}
                   className={classes.searchArea}
                   alignItems='center'
                   direction='row'
                   justify='center'>
                 <Grid item xs={12} sm={6}>
-                    <form id='searchForm' className={classes.container} onSubmit={this.onFormSubmit.bind(this)}>
+                    <form id='searchForm' className={classes.container}
+                          onSubmit={this.onFormSubmit.bind(this)}>
                         <Grid container>
                             <Grid item xs={12} sm={10}>
                                 <Input
@@ -83,7 +103,8 @@ class SearchBar extends React.Component<SearchBarState> {
                                 />
                             </Grid>
                             <Grid item xs={12} sm={2}>
-                                <Button type='submit' variant='raised' color='primary' className={classes.button}>
+                                <Button type='submit' variant='raised' color='primary'
+                                        className={classes.button}>
                                     Search
                                 </Button>
                             </Grid>
