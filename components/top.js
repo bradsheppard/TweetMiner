@@ -3,13 +3,13 @@ import Typography from 'material-ui/Typography';
 import Hidden from 'material-ui/Hidden';
 import { withStyles } from 'material-ui/styles';
 
-const style = {
+const style = theme => ({
     typography: {
         paddingBottom: '1em',
         paddingTop: '1em',
-        backgroundColor: '#ffffff'
+        backgroundColor: theme.palette.primary.main
     }
-};
+});
 
 function Top (props) {
     const { classes } = props;
