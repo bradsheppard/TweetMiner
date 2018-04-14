@@ -1,23 +1,30 @@
 import reducer from '../../reducers/tweet_reducer';
 import { RECEIVE_TWEETS, REQUEST_TWEETS } from '../../actions';
-import { tweets } from '../fakes/tweets';
+import { loadedTweetState, emptyTweetState, twitterApiResponse } from '../fakes/tweet_fakes';
 
 describe('Tweet reducer', () => {
 
     it('Handles initial state', () => {
-        expect(reducer(undefined, {})).toEqual([]);
+        expect(reducer(undefined, {})).toEqual({
+            tweets: [],
+            loading: false
+        });
     });
 
     it('Handle request tweets', () => {
-        expect(reducer(tweets, {
-            type: REQUEST_TWEETS
-        })).toEqual([]);
+        expect(reducer(emptyTweetState, { type: REQUEST_TWEETS } )).toEqual({
+            tweets: [],
+            loading: true
+        });
     });
 
     it('Handle receive tweets', () => {
-        expect(reducer(tweets, {
+        expect(reducer(loadedTweetState, {
             type: RECEIVE_TWEETS,
-            tweets: tweets
-        })).toEqual(tweets.statuses);
+            tweets: twitterApiResponse
+        })).toEqual({
+            loading: false,
+            tweets: twitterApiResponse.statuses
+        });
     });
 });

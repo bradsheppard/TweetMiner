@@ -1,11 +1,11 @@
 // @flow
 
-export type SearchTerm = string;
+import type { SearchTermState } from '../reducers/search_term_reducer';
 
 export type Tweets = Array<Tweet>
 
 export type State = {
-    +searchTerm: SearchTerm,
+    +searchTerm: SearchTermState,
     +tweets: Tweets
 };
 

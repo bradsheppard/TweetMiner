@@ -2,9 +2,10 @@
 
 import { SEARCH_TERM_CHANGE} from '../actions';
 import type { SearchTermChangeAction } from '../actions';
-import type { SearchTerm } from '../types';
 
-export default (state: SearchTerm = '', action: SearchTermChangeAction): SearchTerm => {
+export type SearchTermState = string;
+
+export default (state: SearchTermState = '', action: SearchTermChangeAction): SearchTermState => {
     switch(action.type) {
         case SEARCH_TERM_CHANGE:
             return action.searchTerm;

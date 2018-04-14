@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 import type { Tweet, User } from '../../types';
 import type { ReceiveAction, RequestAction } from '../../actions';
 
-import { tweets } from '../fakes/tweets';
+import { tweet_fakes } from '../fakes/tweet_fakes';
 
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk';
@@ -25,16 +25,16 @@ describe('Actions', () => {
         expect(actions.searchTermChange(text)).toEqual(expectedAction)
     });
 
-    it('Receive tweets', () => {
+    it('Receive twitterApiResult', () => {
 
         const expectedAction: ReceiveAction = {
             type: actions.RECEIVE_TWEETS,
-            tweets: tweets
+            tweets: tweet_fakes
         };
-        expect(actions.receiveTweets(tweets)).toEqual(expectedAction);
+        expect(actions.receiveTweets(tweet_fakes)).toEqual(expectedAction);
     });
 
-    it('Request tweets', () => {
+    it('Request twitterApiResult', () => {
         const expectedAction: RequestAction = {
             type: actions.REQUEST_TWEETS
         };
@@ -42,7 +42,7 @@ describe('Actions', () => {
         expect(actions.requestTweets()).toEqual(expectedAction);
     });
 
-    it('Get tweets', () => {
+    it('Get twitterApiResult', () => {
         const user: User = {
             name: 'joe smith',
             profile_image_url_https: 'some_image.jpg'

@@ -5,7 +5,7 @@ import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import ResultsListItem from '../../components/results_list_item';
 
-import { tweet } from '../fakes/tweets';
+import { tweet } from '../fakes/tweet_fakes';
 
 Enzyme.configure({ adapter: new Adapter() });
 

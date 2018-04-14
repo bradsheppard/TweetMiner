@@ -8,26 +8,32 @@ import { withStyles } from 'material-ui/styles';
 import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
+import { CircularProgress } from 'material-ui/Progress';
 import { Sticky } from 'react-sticky';
 
-import type { SearchTerm } from '../types';
+import type { SearchTermState } from '../reducers/search_term_reducer';
+import type { TweetState } from '../reducers/tweet_reducer';
 
 type StickyProps = {
-    style: Object,
-    isSticky: boolean
+    style: Object
 };
 
 type SearchBarState = {
-    +searchTerm: SearchTerm,
+    +searchTerm: SearchTermState,
+    +tweets: TweetState,
     +searchTermChange: string => void,
     +getTweets: string => void,
-    +classes: Object
+    +classes: Object,
+    +noSticky: boolean
 }
 
 const styles = theme => ({
     container: {
         display: 'flex',
         flexWrap: 'wrap',
+    },
+    circularProgress: {
+        marginLeft: '2em'
     },
     searchArea: {
         backgroundColor: theme.palette.secondary.main,
@@ -49,33 +55,33 @@ const styles = theme => ({
         borderRadius: 4,
         backgroundColor: theme.palette.common.white,
         border: '1px solid #ced4da',
-        fontSize: 16,
+        fontSize: 20,
         padding: '1em 1em',
         width: 'calc(100% - 24px)',
-        transition: theme.transitions.create(['border-color', 'box-shadow']),
-        '&:focus': {
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-        },
+        transition: theme.transitions.create(['border-color', 'box-shadow'])
     }
 });
 
 class SearchBar extends React.Component<SearchBarState> {
 
     render() {
-        const { classes, renderSticky } = this.props;
+        const { classes, noSticky } = this.props;
+
+        if(noSticky)
+            return this.renderSearchBar(classes);
 
         return(
             <Sticky>
                 {
-                    ({style, isSticky}: StickyProps) => {
-                        return this.getSearchBar(classes, style);
+                    ({ style }: StickyProps) => {
+                        return this.renderSearchBar(classes, style);
                     }
                 }
             </Sticky>
         );
     }
 
-    getSearchBar(classes: Object, style: Object) {
+    renderSearchBar(classes: Object, style?: Object) {
         return (
             <Grid container
                   style={style}
@@ -83,6 +89,7 @@ class SearchBar extends React.Component<SearchBarState> {
                   alignItems='center'
                   direction='row'
                   justify='center'>
+                <Grid item sm={3} />
                 <Grid item xs={12} sm={6}>
                     <form id='searchForm' className={classes.container}
                           onSubmit={this.onFormSubmit.bind(this)}>
@@ -111,8 +118,16 @@ class SearchBar extends React.Component<SearchBarState> {
                         </Grid>
                     </form>
                 </Grid>
+                <Grid item sm={3}>
+                    {this.renderLoadingBar()}
+                </Grid>
             </Grid>
         );
+    }
+
+    renderLoadingBar() {
+        if(this.props.tweets.loading)
+            return <CircularProgress size={50} className={this.props.classes.circularProgress}/>
     }
 
     onInputChange(event: any) {
@@ -136,9 +151,10 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-function mapStateToProps({ searchTerm }) {
+function mapStateToProps({ searchTerm, tweets }) {
     return {
-        searchTerm
+        searchTerm,
+        tweets
     };
 }
 

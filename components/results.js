@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import ResultsList from './results_list';
 import Grid from 'material-ui/Grid';
 
-import type { Tweets } from '../types';
+import type { TweetState } from '../reducers/tweet_reducer';
 
 type ResultsState = {
-    +tweets: Tweets
+    +tweets: TweetState
 };
 
 class Results extends React.Component<ResultsState> {
@@ -20,7 +20,7 @@ class Results extends React.Component<ResultsState> {
                   direction='row'
                   justify='center'>
                 <Grid item xs={12} sm={6}>
-                    <ResultsList tweets={this.props.tweets} />
+                    <ResultsList tweets={this.props.tweets.tweets} />
                 </Grid>
             </Grid>
         );
