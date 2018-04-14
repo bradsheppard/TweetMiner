@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ResultsList from './results_list';
 import Grid from 'material-ui/Grid';
+import Fade from 'material-ui/transitions/Fade';
 
 import type { TweetState } from '../reducers/tweet_reducer';
 
@@ -15,14 +16,16 @@ class Results extends React.Component<ResultsState> {
 
     render() {
         return (
-            <Grid container
-                  alignItems='center'
-                  direction='row'
-                  justify='center'>
-                <Grid item xs={12} sm={6}>
-                    <ResultsList tweets={this.props.tweets.tweets} />
+            <Fade in={!this.props.tweets.loading} timeout={750}>
+                <Grid container
+                      alignItems='center'
+                      direction='row'
+                      justify='center'>
+                    <Grid item xs={12} sm={6}>
+                        <ResultsList tweets={this.props.tweets.tweets} />
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Fade>
         );
     }
 }
