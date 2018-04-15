@@ -9,14 +9,9 @@ import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
 import { CircularProgress } from 'material-ui/Progress';
-import { Sticky } from 'react-sticky';
 
 import type { SearchTermState } from '../reducers/search_term_reducer';
 import type { TweetState } from '../reducers/tweet_reducer';
-
-type StickyProps = {
-    style: Object
-};
 
 type SearchBarState = {
     +searchTerm: SearchTermState,
@@ -65,20 +60,9 @@ const styles = theme => ({
 class SearchBar extends React.Component<SearchBarState> {
 
     render() {
-        const { classes, noSticky } = this.props;
+        const { classes } = this.props;
 
-        if(noSticky)
-            return this.renderSearchBar(classes);
-
-        return(
-            <Sticky>
-                {
-                    ({ style }: StickyProps) => {
-                        return this.renderSearchBar(classes, style);
-                    }
-                }
-            </Sticky>
-        );
+        return this.renderSearchBar(classes);
     }
 
     renderSearchBar(classes: Object, style?: Object) {
@@ -101,7 +85,6 @@ class SearchBar extends React.Component<SearchBarState> {
                                     disableUnderline={true}
                                     value={this.props.searchTerm}
                                     fullWidth={true}
-                                    /*className={classes.input}*/
                                     onChange={this.onInputChange.bind(this)}
                                     classes={{
                                         root: classes.textFieldRoot,

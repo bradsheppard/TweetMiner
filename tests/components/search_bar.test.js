@@ -22,14 +22,14 @@ describe('Search bar', () => {
 
     it('It should render', () => {
         const store = mockStore({tweets: emptyTweetState});
-        const enzymeWrapper = mount(<SearchBar noSticky={true} store={store}/>);
+        const enzymeWrapper = mount(<SearchBar store={store}/>);
 
         expect(enzymeWrapper.find('#searchForm')).toHaveLength(1);
     });
 
     it('Search term changed', () => {
         const store = mockStore({tweets: emptyTweetState});
-        const enzymeWrapper = mount(<SearchBar noSticky={true} store={store}/>);
+        const enzymeWrapper = mount(<SearchBar store={store}/>);
 
         const input = enzymeWrapper.find('input');
         input.simulate('change');
@@ -48,7 +48,7 @@ describe('Search bar', () => {
         mockAdapter.onGet('http://localhost:3000/api/tweets/metallica').reply(200, twitterApiResponse);
 
         const store = mockStore({ tweets: [], searchTerm: 'metallica' });
-        const enzymeWrapper = mount(<SearchBar noSticky={true} store={store}/>);
+        const enzymeWrapper = mount(<SearchBar store={store}/>);
 
         const form = enzymeWrapper.find('form');
         form.simulate('submit');

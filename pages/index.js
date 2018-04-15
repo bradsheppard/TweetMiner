@@ -6,7 +6,6 @@ import withRedux from 'next-redux-wrapper';
 import { initStore } from '../store';
 import withRoot from './withRoot';
 import { withStyles } from 'material-ui/styles';
-import { StickyContainer } from 'react-sticky';
 
 const styles = {
     root: {
@@ -22,10 +21,8 @@ class Index extends React.Component {
         return (
             <div id='mainContainer' className={classes.root}>
                 <Top/>
-                <StickyContainer>
-                    <SearchBar/>
-                    <Results/>
-                </StickyContainer>
+                <SearchBar/>
+                <Results/>
             </div>
         );
     }
