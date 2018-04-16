@@ -12,11 +12,29 @@ export type State = {
 export type Tweet = {
     +text: string,
     +created_at: string,
-    +user: User
+    +user: User,
+    +extended_entities: ExtendedEntities
 }
 
 export type User = {
     +name: string,
     +screen_name: string,
-    +profile_image_url_https: string
+    +profile_image_url_https: string,
+}
+
+export type ExtendedEntities = {
+    +media: Array<Media>
+}
+
+export type Media = {
+    +video_info: VideoInfo
+}
+
+export type VideoInfo = {
+    +variants: Array<Variant>
+}
+
+export type Variant = {
+    +bitrate: number,
+    +url: string
 }
