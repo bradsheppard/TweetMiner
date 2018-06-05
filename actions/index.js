@@ -3,10 +3,13 @@
 import axios from 'axios';
 import type { State } from '../types/index';
 import type { Tweet } from '../types';
+import getConfig from 'next/config'
 
 export const REQUEST_TWEETS = 'REQUEST_TWEETS';
 export const RECEIVE_TWEETS = 'RECEIVE_TWEETS';
 export const SEARCH_TERM_CHANGE = 'SEARCH_TERM_CHANGE';
+
+export const MOCK_URL = 'http://localhost:3000';
 
 export type RequestAction = { type: 'REQUEST_TWEETS' };
 export type ReceiveAction = {
@@ -22,6 +25,18 @@ export type Action =
     | SearchTermChangeAction
     | RequestAction
     | ReceiveAction;
+
+let apiUrl;
+
+// Load apiUrl from getConfig if running on next
+// If mock, use localhost
+if(getConfig()) {
+    const { publicRuntimeConfig } = getConfig();
+    apiUrl = publicRuntimeConfig.apiUrl;
+}
+else {
+    apiUrl = MOCK_URL;
+}
 
 type Dispatch = (action: Action | ThunkAction | PromiseAction) => any;
 type GetState = () => State;
@@ -43,10 +58,11 @@ export function receiveTweets(tweets: any): ReceiveAction {
 }
 
 export function getTweets(searchTerm: string): ThunkAction {
+
     return dispatch => {
         dispatch(requestTweets());
 
-        return axios.get(`http://localhost:3000/api/tweets/${searchTerm}`)
+        return axios.get(`${apiUrl}/api/tweets/${searchTerm}`)
             .then(response => {
                 dispatch(receiveTweets(response.data));
             });

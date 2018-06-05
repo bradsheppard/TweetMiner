@@ -45,13 +45,17 @@ describe('Actions', () => {
     it('Get twitterApiResult', () => {
         const user: User = {
             name: 'joe smith',
-            profile_image_url_https: 'some_image.jpg'
+            profile_image_url_https: 'some_image.jpg',
+            screen_name: 'test_screen_name'
         };
 
         const tweet: Tweet = {
             created_at: 'some date',
             text: 'some tweet',
-            user: user
+            user: user,
+            extended_entities: {
+                media: []
+            }
         };
 
         const mockReceive: ReceiveAction = {
@@ -73,7 +77,7 @@ describe('Actions', () => {
         ];
 
         let mockAdapter = new MockAdapter(axios);
-        mockAdapter.onGet('http://localhost:3000/api/tweets/random').reply(200, {
+        mockAdapter.onGet(`${actions.MOCK_URL}/api/tweets/random`).reply(200, {
             statuses: [
                 tweet
             ]

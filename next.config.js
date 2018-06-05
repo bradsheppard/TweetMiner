@@ -9,5 +9,8 @@ module.exports = {
         };
 
         return config
+    },
+    publicRuntimeConfig: {
+        apiUrl: 'http://localhost:3000'
     }
 };

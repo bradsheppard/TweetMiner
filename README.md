@@ -1,7 +1,33 @@
 Tweet Miner
 ===========
-Tweet Miner is a NextJS web application that allows a user to
+Tweet Miner is a server rendered React/NextJS web application that allows a user to
 search for Twitter Tweets using keywords.
+
+Configuration
+-------------
+App specific configuration can be found in next.config.js. One should set the apiUrl property
+to the value of the URL where the app will be hosted, or the URL of a load balancer fronting the app.
+For testing purposes, localhost is generally fine:
+
+```
+module.exports = {
+    webpack: (config, {dev}) => {
+        if(dev) {
+            config.devtool = 'cheap-module-eval-source-map'
+        }
+        // Fixes npm packages that depend on `fs` module
+        config.node = {
+            fs: 'empty'
+        };
+
+        return config
+    },
+    publicRuntimeConfig: {
+        apiUrl: 'http://localhost:3000'
+    }
+};
+
+```
 
 Usage
 -----
