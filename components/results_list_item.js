@@ -1,13 +1,16 @@
+// @flow
+
 import React from 'react';
 import { ListItem, ListItemText } from 'material-ui/List';
-import { Tweet } from "../types";
+import type { Tweet } from "../types";
 import Avatar from 'material-ui/Avatar';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import _ from 'lodash';
 
 type Props = {
-    tweet: Tweet
+    tweet: Tweet,
+    classes: any
 }
 
 const style = {

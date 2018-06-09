@@ -1,7 +1,13 @@
+// @flow
+
 import React from 'react';
 import Typography from 'material-ui/Typography';
 import Hidden from 'material-ui/Hidden';
 import { withStyles } from 'material-ui/styles';
+
+type Props = {
+    +classes: any
+}
 
 const style = theme => ({
     typography: {
@@ -11,7 +17,7 @@ const style = theme => ({
     }
 });
 
-function Top (props) {
+function Top (props: Props) {
     const { classes } = props;
 
     return(

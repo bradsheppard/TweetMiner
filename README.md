@@ -38,7 +38,7 @@ npm install
 to ensure that the node modules are installed. Once that is completed,
 run
 ```
-npm start
+npm build && npm start
 ```
 to run the application in production mode. The app is configured
 to run on localhost:3000 by default so navigating to that in the browser

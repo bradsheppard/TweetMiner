@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import ResultsListItem from './results_list_item';
 import List from 'material-ui/List';
@@ -7,7 +9,8 @@ import { withStyles } from 'material-ui/styles';
 import type { Tweets } from '../types';
 
 type Props = {
-    +tweets: Tweets
+    +tweets: Tweets,
+    +classes: any
 }
 
 const styles = theme => ({

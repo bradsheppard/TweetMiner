@@ -8,6 +8,15 @@ module.exports = {
             fs: 'empty'
         };
 
+        config.module.rules.push({
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'eslint-loader',
+            options: {
+                failOnWarning: true,
+            }
+        });
+
         return config
     },
     publicRuntimeConfig: {

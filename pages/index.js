@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import Top from '../components/top';
 import SearchBar from '../components/search_bar';
@@ -13,7 +15,11 @@ const styles = {
     }
 };
 
-class Index extends React.Component {
+type IndexState = {
+    classes: any
+}
+
+class Index extends React.Component<IndexState> {
     render() {
 
         const { classes } = this.props;
