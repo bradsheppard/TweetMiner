@@ -3,6 +3,8 @@ Tweet Miner
 Tweet Miner is a server rendered React/NextJS web application that allows a user to
 search for Twitter Tweets using keywords.
 
+![Image](screen_shots/tweet_miner_main.png)
+
 Configuration
 -------------
 App specific configuration can be found in next.config.js. One should set the apiUrl property
